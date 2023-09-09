@@ -1,0 +1,113 @@
+SHOW DATABASE;
+
+CREATE DATABASE zwierzeta;
+USE zwierzeta;
+CREATE TABLE najszybszych10
+(
+    zwierze CHAR(20),
+    max_predkosc INT,
+    stan CHAR(10)
+);
+
+SHOW tables;
+DESC najszybszych10;
+
+INSERT INTO najszybszych10(zwierze, max_predkosc, stan)
+VALUES ("sokol wedrowny", 390, "nurkowanie");
+
+INSERT INTO najszybszych10(zwierze, max_predkosc, stan)
+VALUES ("orzel zloty", 320, "nurkowanie");
+
+INSERT INTO najszybszych10(zwierze, max_predkosc, stan)
+VALUES ("bialo nur", 170, "lot");
+
+SELECT* FROM najszybszych10   #pokaz * (wszyskto) z tabeli najszybszych10
+
+SELECT zwierze FROM najszybszych10; # sama tabela zwierze 
+
+SELECT zwierze, max_predkosc FROM najszybszych10;
+
+
+
+INSERT INTO najszybszych10(zwierze, max_predkosc)
+VALUES("kobuz", 160);
+
+INSERT INTO najszybszych10(stan, zwierze, max_predkosc)
+VALUES ("sprint", "gepard", 120);
+
+
+DROP TABLE najszybszych10; # usuwa baze
+
+
+#
+CREATE TABLE najszybszych10
+(
+    zwierze CHAR(20) NOT NULL DEFAULT "nienazwano",  #jezeli nie bedzie danej ustawi - nienazwano
+
+    max_predkosc INT,
+    stan CHAR(10),
+);
+
+
+CREATE TABLE unikaty_najszybsze
+(
+    zwierze_id INT NOT NULL,
+    zwierze CHAR(20) DEFAULT 'nienazwany',
+    max_predkosc INT NOT NULL,
+    stan CHAR(10) DEFAULT 'niepodano',
+    
+
+)
+
+DROP TABLE unikaty_najszybsze;
+
+CREATE TABLE unikaty_najszybsze
+(
+    zwierze_id INT AUTO_INCREMENT PRIMARY KEY,
+    zwierze CHAR(20) DEFAULT 'nienazwany',
+    max_predkosc INT NOT NULL,
+    stan CHAR(10) DEFAULT 'niepodano',
+);
+
+INSERT INTO unikaty_najszybsze(zwierze, max_predkosc, stan)
+VALUES ('sokol wedrowny', 390, 'nurkowanie');
+
+INSERT INTO unikaty_najszybsze(zwierze, max_predkosc, stan)
+VALUES ('orzel zloty', 320);
+
+SELECT * FROM unikaty_najszybsze;
+
+USE sakila;
+SHOW tables;
+
+
+SELECT * FROM film;
+DESC film;
+
+
+SELECT title, release_year FROM film;
+SELECT title, length, rating FROM film LIMIT 10;
+
+#limit wyswietla np 10 pierwszych przypadkow
+
+SELECT length, title FROM film limit 150,20  # zaczynam od 150 pozycji i wyswietla 20 kolejnych
+
+SELECT title, length, rating FROM film LIMIT 151;
+
+SELECT title, rating FROM film WHERE rating = 'G';
+
+SELECT title, rating FROM film WHERE length > 120;
+
+SELECT title, rating FROM film WHERE length != 130;
+
+SELECT 
+    title AS 'tytuł filmu',
+    release_year AS 'rok wydania',
+    length AS 'Długość filmu',
+    rental_duration AS 'Czas wypożyczenia', 
+    rental_rate AS 'koszt wypożyczenia', 
+    replacement_cost AS 'koszt zwrotu',
+FROM film LIMIT 20;
+
+SELECT title AS nazwa FROM film;
+
